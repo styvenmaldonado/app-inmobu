@@ -1,0 +1,21 @@
+{
+  "defaultRent": 1000000,
+  "TEA": 0.2501,
+  "minRent": 500000,
+  "maxRent": 6000000,
+  "feeRate": 0.60,
+  "FEE_SCHEDULES": [
+    {
+      "quota": 1,
+      "discountPercent": 15,
+      "discountText": "15% descuento"
+    },
+    {
+      "quota": 3
+    },
+    {
+      "quota": 6
+    }
+  ],
+  "DEFAULT_FEE_RATE": 0.60
+}
