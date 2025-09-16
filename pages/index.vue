@@ -7,6 +7,13 @@ import type {SubmitEventPromise} from "vuetify/framework";
 import UiProgressCircular from "~/components/main/ui-progress-circular.vue";
 import UiInputMoney from "~/components/main/ui-input-money.vue";
 
+useHead({
+  title: 'Inmobu Nos convertimos en tu fiador o codeudor solidario',
+  meta: [
+    { name: 'description', content: 'My amazing site.' }
+  ],
+})
+
 const dataStore = useDataStore();
 
 onMounted(()=> {

@@ -13,19 +13,10 @@ onMounted(() => {
   })
 })
 
-const onSubmit = async (e: SubmitEventPromise) => {
-  const {valid} = await e;
-  if (!valid) return;
-  await navigateTo({
-    path: "/budget",
-    query: {
-      rent: dataStore.initial.rent
-    }
-  })
-};
+
 
 </script>
-<template>x
+<template>
   <MainContainer>
     <div class="flex flex-col gap-3 pt-20 lg:pt-28">
       <section class="flex ">
