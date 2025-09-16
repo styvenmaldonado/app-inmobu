@@ -1,0 +1,20 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Aquí está la solución: Especifica la versión de Node.js
+        - nvm use 20
+        # Es una buena práctica usar 'npm ci' en lugar de 'npm i' para builds
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    # Para Nuxt, el directorio de salida suele ser '.output/public'
+    baseDirectory: .output/public
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
