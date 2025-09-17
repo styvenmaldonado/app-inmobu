@@ -20,8 +20,10 @@ const uiStore = useGlobalUIStore()
               <img class="h-10 object-contain" src="/logo.webp" alt="Inmobu"/>
               <ui-divider/>
               <v-list density="compact" nav>
-                <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home"></v-list-item>
-                <v-list-item prepend-icon="mdi-forum" title="About" value="about"></v-list-item>
+                <v-list-item title="Inicio" href="/"></v-list-item>
+                <v-list-item title="FAQ - Preguntas Frecuentes" href="/#FAQ"></v-list-item>
+                <v-list-item title="Términos y Condiciones"  href="/terminos-y-condiciones"></v-list-item>
+                <v-list-item  title="Política de Privacidad" href="//politica-privacidad"></v-list-item>
               </v-list>
             </div>
 

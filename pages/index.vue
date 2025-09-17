@@ -63,7 +63,11 @@ const onSubmit = async (e: SubmitEventPromise) => {
       <section class="flex h-screen">
         <div class="flex flex-col gap-3 m-auto px-5">
           <div class="flex flex-col gap-3">
-            <h1 class="text-4xl lg:text-5xl font-bold leading-9">El apartamento de tus sueños,<span class="text-blue-600">sin pedirle favores a nadie.</span></h1>
+            <div class="flex gap-2">
+              <span class="text-white w-fit px-4 py-2 rounded-lg font-bold bg-gradient-to-r from-cyan-500 to-blue-500">Sin Anticipos</span>
+              <span class="text-blue-600 border-2 border-blue-600 w-fit px-2 py-2 rounded-lg font-bold">100% Virtual</span>
+            </div>
+            <h1 class="text-4xl lg:text-5xl font-bold leading-9">Arrienda tu espacio ideal, <span class="text-blue-600">sin pedirle favores a nadie.</span></h1>
             <h2 class="text-xl leading-6">Nos convertimos en tu <span class="text-blue-600 font-bold">fiador y/o codeudor solidario</span> ante propietarios, inmobiliarias y aseguradoras para que arriendes donde quieras. Rápido, 100% digital y sin pagar por adelantado.</h2>
           </div>
           <p class="text-xs text-gray-600 mt-2">* Cotiza la fianza ingresando el valor estimado del arriendo mensual</p>
@@ -145,7 +149,7 @@ const onSubmit = async (e: SubmitEventPromise) => {
           </div>
         </div>
       </section>
-      <section class="flex bg-gray-50">
+      <section class="flex bg-gray-50" id="FAQ">
         <div class="flex flex-col gap-3 m-auto px-5 py-10">
           <div class="flex flex-col gap-3">
             <h3 class="text-4xl lg:text-5xl font-bold leading-9">FAQ - Preguntas Frecuentes</h3>
