@@ -90,7 +90,7 @@ const onNext = async  (e: SubmitEventPromise) => {
                 </template>
               </v-checkbox>
             </v-container>
-            <ui-submit-button text="Iniciar estudio GRATIS"/>
+            <ui-submit-button text="INICIAR"/>
           </v-form>
         </div>
         <ui-space size="large"/>

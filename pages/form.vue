@@ -30,7 +30,7 @@ const sendData = async () => {
 
   try {
     UIStore.showLoading();
-    const response = await fetch('https://sheetdb.io/api/v1/wga7icn1ps8bd', {
+    const response = await fetch('https://sheetdb.io/api/v1/obfj6gy1omjxy', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
