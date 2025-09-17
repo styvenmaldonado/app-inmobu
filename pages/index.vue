@@ -7,12 +7,35 @@ import type {SubmitEventPromise} from "vuetify/framework";
 import UiProgressCircular from "~/components/main/ui-progress-circular.vue";
 import UiInputMoney from "~/components/main/ui-input-money.vue";
 
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": FAQ.map(item => ({
+    "@type": "Question",
+    "name": item.title,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.text
+    }
+  }))
+};
+
+
 useHead({
-  title: 'Inmobu Nos convertimos en tu fiador o codeudor solidario',
+  title: 'Inmobu | Tu Fiador y Codeudor para Arrendar',
   meta: [
-    { name: 'description', content: 'My amazing site.' }
+    { name: 'description', content: '¿Necesitas un fiador para arrendar? Inmobu es tu codeudor solidario en Colombia. Olvídate de los requisitos y consigue el inmueble de tus sueños. ¡Aplica online!' }
   ],
-})
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify(faqSchema)
+    }
+  ]
+});
+
+
 
 const dataStore = useDataStore();
 

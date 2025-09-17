@@ -12,7 +12,7 @@ const route = useRoute();
 onMounted(() => {
   dataStore.initialize({
     rent: route.query?.rent,
-    quota: route.query?.quota
+    quotaPaymentIndexSelected: 0
   })
 })
 

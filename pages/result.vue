@@ -13,23 +13,12 @@ import UiSubmitButton from "~/components/main/ui-submit-button.vue";
 import UiAutocomplete from "~/components/main/ui-autocomplete.vue";
 
 const dataStore = useDataStore();
+const UIStore = useGlobalUIStore();
 
 onMounted(()=> {
-  dataStore.initialize({
-    rent: feeConfig.defaultRent
-  })
+  UIStore.hideLoading()
 })
 
-const onSubmit = async (e: SubmitEventPromise) => {
-  const {valid} = await e;
-  if (!valid) return;
-  await navigateTo({
-    path: "/budget",
-    query: {
-      rent: dataStore.initial.rent
-    }
-  })
-};
 
 const onClick = async () => {
   await navigateTo("/")

@@ -6,6 +6,7 @@ import UiSteperBlank from "~/components/main/ui-steper-blank.vue";
 import UiAutocomplete from "~/components/main/ui-autocomplete.vue";
 import type {SubmitEventPromise} from "vuetify";
 import UiInput from "~/components/main/ui-input.vue";
+import UiLoadingBackground from "~/components/main/ui-loading-background.vue";
 
 
 const dataStore = useDataStore();
@@ -15,8 +16,8 @@ const UIStore = useGlobalUIStore();
 onMounted(() => {
   UIStore.initialize();
   dataStore.initialize({
-    amount: route.query?.amount,
-    quota: route.query?.quota
+    rent: route.query?.rent,
+    quotas: route.query?.quotas
   })
 })
 
@@ -26,7 +27,9 @@ const onSubmit = async (e: SubmitEventPromise) => {
   UIStore.nextStep()
 }
 const sendData = async () => {
+
   try {
+    UIStore.showLoading();
     const response = await fetch('https://sheetdb.io/api/v1/wga7icn1ps8bd', {
       method: 'POST',
       headers: {
@@ -41,7 +44,8 @@ const sendData = async () => {
 
     // Opcional: para verificar la respuesta del servidor
     const data = await response.json();
-    console.log(data);
+
+    await navigateTo('/result')
 
   } catch (error) {
     console.error('Hubo un error con la solicitud fetch:', error);
@@ -51,13 +55,13 @@ const sendData = async () => {
 </script>
 <template>
   <MainContainer>
+    <ui-loading-background/>
     <div class="flex flex-col gap-6 px-5 pt-32">
       <section class="flex flex-col gap-8">
         <div>
           <h1 class="text-3xl lg:text-5xl font-bold leading-8">Confirma tus <span class="text-blue-600">datos personales</span></h1>
           <h2 class="text-xl leading-6">Necesitamos tus datos para completar tu solicitud.</h2>
         </div>
-
         <ui-steper-blank v-if="dataStore.initial" :step="UIStore.step">
           <template #item.1>
             <v-form @submit.prevent="onSubmit">
