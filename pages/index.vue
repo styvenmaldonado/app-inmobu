@@ -64,13 +64,16 @@ const onBudget = async (e: SubmitEventPromise) => {
       <section class="flex h-screen">
         <div class="flex flex-col gap-3 m-auto px-5">
           <div class="flex flex-col gap-3">
-            <h1 class="text-5xl lg:text-5xl font-bold leading-11">Arrienda tu espacio ideal, <span class="text-blue-600">sin pedirle favores a nadie.</span></h1>
+            <div class="flex gap-2">
+              <span class="text-white w-fit px-4 py-2 rounded-lg font-bold bg-gradient-to-r from-cyan-500 to-blue-500">Sin Anticipos</span>
+              <span class="text-blue-600 border-2 border-blue-600 w-fit px-2 py-2 rounded-lg font-bold">100% Virtual</span>
+            </div>
+            <h1 class="text-3xl lg:text-5xl font-bold leading-8">Arrienda tu espacio ideal, <span class="text-blue-600">sin pedirle favores a nadie.</span></h1>
             <h2 class="text-xl leading-6">Nos convertimos en tu <span class="text-blue-600 font-bold">fiador y/o codeudor solidario</span> ante propietarios, inmobiliarias y aseguradoras para que arriendes donde quieras. Rápido, 100% digital y sin pagar por adelantado.</h2>
           </div>
           <div class="py-8 flex flex-col gap-4">
             <button @click="onSubmit" class="bg-blue-600 py-4 w-full font-black rounded-lg text-white shadow-lg text-lg">Solicita tu Fianza Ahora</button>
             <button @click="onBudget" class="text-blue-600 py-4 w-full font-black rounded-lg  shadow-lg text-lg border border-gray-50">Cotiza tu fianza</button>
-
           </div>
         </div>
       </section>
