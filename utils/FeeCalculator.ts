@@ -1,4 +1,4 @@
-// src/config/feeConfig.js
+// src/utils/FeeCalculator.ts
 import feeConfig from "~/feeConfig.json";
 import { Loan } from "~/utils/financial/Loan";
 import { Rate } from "~/utils/financial/Rate";
@@ -26,31 +26,48 @@ class FeeCalculator {
      * @returns {Array<Object>} Un array de objetos con el programa de pagos.
      */
     generateSchedulePayments(amount:number) {
-        if (typeof amount !== 'number' || amount < 0) {
+        // Guard clause: if amount is invalid or zero, return an empty array immediately.
+        if (typeof amount !== 'number' || amount <= 0) {
             return [];
         }
 
-        const rate =  Rate.convertEffectiveAnnualToPeriodic(feeConfig.TEA,12)
-        const fee = amount * (feeConfig.feeRate || 0)
+        const rate = Rate.convertEffectiveAnnualToPeriodic(feeConfig.TEA, 12);
+        const fee = amount * (feeConfig.feeRate || 0);
+
+        // Another guard clause: if the calculated fee is zero, no calculations are needed.
+        if (fee <= 0) {
+            return [];
+        }
 
 
         return feeConfig.FEE_SCHEDULES.map(schedule => {
-           // Fee Amount
+            const discountPercent = (schedule.discountPercent || 0) / 100;
 
-            const loan = new Loan({
-                pv: fee,
-                nper: schedule.quota,
-                rate
-            })
+            let feeMonthly = fee;
+            let totalFee = fee;
 
-            const discountPercent = (schedule.discountPercent || 0)/ 100;
+            // **FIX APPLIED HERE:**
+            // Only create a Loan instance and perform amortization calculations if there is more than one quota.
+            // This prevents the Loan constructor from being called with a zero fee (pv=0) or when not needed.
+            if (schedule.quota > 1) {
+                const loan = new Loan({
+                    pv: fee,
+                    nper: schedule.quota,
+                    rate
+                });
+
+                // We get the values from the loan instance.
+                // It's good practice to convert Decimal objects back to numbers if the rest of your app expects that.
+                feeMonthly = loan.getPaymentPerPeriod().toNumber();
+                totalFee = loan.getTotalAmountPaid().toNumber();
+            }
 
             return {
                 paymentQuota: schedule.quota,
-                paymentWithDiscount: fee * (1-discountPercent) ,
+                paymentWithDiscount: fee * (1 - discountPercent),
                 discountText: schedule.discountText,
-                feeMonthly: schedule.quota ==1  ? fee : loan.getPaymentPerPeriod(),
-                totalFee:  schedule.quota ==1  ? fee : loan.getTotalAmountPaid()
+                feeMonthly: feeMonthly,
+                totalFee: totalFee
             };
         });
     }
@@ -66,4 +83,4 @@ class FeeCalculator {
     }
 }
 
-export default new FeeCalculator(); // Exporta una instancia única de la clase (Singleton)
+export default new FeeCalculator();

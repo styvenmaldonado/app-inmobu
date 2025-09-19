@@ -21,9 +21,11 @@ const uiStore = useGlobalUIStore()
               <ui-divider/>
               <v-list density="compact" nav>
                 <v-list-item title="Inicio" href="/"></v-list-item>
+                <v-list-item title="Cotiza tu fianza" href="/budget"></v-list-item>
                 <v-list-item title="FAQ - Preguntas Frecuentes" href="/#FAQ"></v-list-item>
+                <v-divider></v-divider>
                 <v-list-item title="Términos y Condiciones"  href="/terminos-y-condiciones"></v-list-item>
-                <v-list-item  title="Política de Privacidad" href="//politica-privacidad"></v-list-item>
+                <v-list-item  title="Política de Privacidad" href="/politica-privacidad"></v-list-item>
               </v-list>
             </div>
 
